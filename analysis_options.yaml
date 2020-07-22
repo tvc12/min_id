@@ -10,7 +10,7 @@ linter:
   rules:
     - avoid_as
     - camel_case_types
-    - avoid_print
+    # - avoid_print
     - unnecessary_new
     - empty_statements
     - hash_and_equals
@@ -36,7 +36,7 @@ analyzer:
   errors:
     avoid_as: error
     camel_case_types: error
-    avoid_print: error
+    # avoid_print: error
     unnecessary_new: error
     no_duplicate_case_values: error
     prefer_void_to_null: error
