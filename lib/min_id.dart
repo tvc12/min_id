@@ -1,11 +1,13 @@
 library min_id;
 
+import 'dart:math' show Random;
+
 part 'id_generator/id_generator.dart';
 part 'id_generator/random_id_generator.dart';
 part 'string_formatter/string_formatter.dart';
 
 abstract class MinId {
-  static String _defaultFormat = '{3d}-{3w}-{3.}';
+  static String _defaultFormat = '{3.}-{3.}-{3.}-{3.}';
   static BaseFormatter _formatter = IDFormatter(RandomIDGenerator());
 
   static BaseFormatter withFormater(BaseFormatter newFormatter) {

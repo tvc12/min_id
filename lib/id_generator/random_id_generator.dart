@@ -1,11 +1,10 @@
 part of min_id;
 
 class RandomIDGenerator extends IDGenerator {
+  final random = Random.secure();
+
   @override
-  String generate(int character) {
-    // TODO: implement generate
-    throw UnimplementedError();
-  }
+  String generate(int character) {}
 
   @override
   String generateNumber(int character) {
@@ -22,6 +21,11 @@ class RandomIDGenerator extends IDGenerator {
   @override
   String generateString(int character) {
     // TODO: implement generateString
+    throw UnimplementedError();
+  }
+
+  @override
+  String generateIn(List<String> data, int character) {
     throw UnimplementedError();
   }
 }
