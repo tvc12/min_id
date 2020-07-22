@@ -1,0 +1,17 @@
+android/
+.metadata
+ios/.generated/
+ios/Flutter/Generated.xcconfig
+ios/Runner/GeneratedPluginRegistrant.*
+.DS_Store
+.atom/
+.idea
+.packages
+.dart_tool/
+.pub/
+build/
+packages
+.flutter-plugins
+*.iml
+/coverage/
+*.log
