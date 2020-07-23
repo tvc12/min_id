@@ -18,5 +18,5 @@ abstract class MinId {
     return _defaultFormat = newFormat;
   }
 
-  static String getId({String format}) => _formatter.generate(format ?? _defaultFormat);
+  static String getId([String format]) => _formatter.generate(format ?? _defaultFormat);
 }

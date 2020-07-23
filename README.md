@@ -1,6 +1,35 @@
 # min_id
 Id generator for dart
 
+### Getting Start ✈
+
++ `default` format 🏮
+
+```js
+import 'package:min_id/min_id.dart;
+
+final id = MinId.getId();
+print(id);// abc-qwe-rty-xzy
+```
+
++ Custom format ✂
+
+```js
+import 'package:min_id/min_id.dart;
+
+final id = MinId.getId('{3d}-{3w}-xyz');
+print(id);//128-bca-xyz
+```
+
++ Custom global format 🌏
+
+```js
+import 'package:min_id/min_id.dart;
+
+MinId.withFormat('{3d}-{3w}-xyz');
+final id = MinId.getId();
+print(id);//128-bca-xyz
+```
 
 ### Document 📝
 
