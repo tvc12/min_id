@@ -25,7 +25,7 @@ typedef RandomFunction = String Function(int);
 
 class IDFormatter extends BaseFormatter {
   final IDGenerator generator;
-  final _regex = RegExp(r'(\d*)(?:{((?:(?![({]).)*?)}|\(((?:(?![({]).)*?)\))');
+  RegExp get _regex => RegExp(r'(\d*)(?:{((?:(?![({]).)*?)}|\(((?:(?![({]).)*?)\))');
   Map<String, RandomFunction> commands = {};
 
   IDFormatter(this.generator) {
@@ -40,25 +40,28 @@ class IDFormatter extends BaseFormatter {
   String generate(String format) {
     RawId rawID = _format(format);
     while (rawID.canFormat) {
-      rawID = _format(format);
+      rawID = _format(rawID.format);
     }
     return rawID.toString();
   }
 
   RawId _format(String format) {
     bool canFormat = false;
+
     final newFormat = format.replaceAllMapped(this._regex, (matcher) {
       canFormat = true;
       final numCharacter = _getNumberCharaterWillGenerate(matcher.group(1));
       final rawFormat = _getFormater(matcher);
+
       switch (rawFormat.mode) {
         // {.}, {d}
         case GenerateMode.AllCharacter:
           if (_isCommand(rawFormat.formater)) {
             final func = this.commands[rawFormat.formater];
-            return func(numCharacter);
+            final chars = func(numCharacter);
+            return chars;
           } else
-            return rawFormat.formater;
+            return List.generate(numCharacter, (index) => rawFormat.formater).join('');
           break;
         // (abc)
         case GenerateMode.OneCharacter:
@@ -110,4 +113,7 @@ class RawFormat {
   final String formater;
 
   RawFormat(this.mode, this.formater);
+
+  @override
+  String toString() => 'mode:: $mode - formatter:: $formater';
 }

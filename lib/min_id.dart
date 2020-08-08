@@ -7,7 +7,7 @@ part 'id_generator/random_id_generator.dart';
 part 'string_formatter/string_formatter.dart';
 
 abstract class MinId {
-  static String _defaultFormat = '3{.}-3{.}-3{.}-3{.}';
+  static String _defaultFormat = '3{w}-3{d}-3{w}-3{d}';
   static BaseFormatter _formatter = IDFormatter(RandomIDGenerator());
 
   static BaseFormatter withFormater(BaseFormatter newFormatter) {
