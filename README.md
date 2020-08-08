@@ -2,6 +2,8 @@
 
 Id generator for dart
 
+![Travis (.com)](https://img.shields.io/travis/com/tvc12/min_id?style=flat-square) ![GitHub](https://img.shields.io/github/license/tvc12/min_id?style=flat-square) ![Pub Version](https://img.shields.io/pub/v/min_id?style=flat-square) ![GitHub repo size](https://img.shields.io/github/repo-size/tvc12/min_id?style=flat-square)
+
 ### Getting Start ✈
 
 + `default` format 🏮
