@@ -41,7 +41,7 @@ void main() {
       expect(raws.last, 126);
     });
     test('Generate only number test success', () {
-      final id = generator.generateIn(['123abc'], character);
+      final id = generator.generateIn('123abc', character);
       final raws = toUTF8Raw(id);
       expect(raws.length, 6);
       expect(raws.first, 49);
