@@ -25,7 +25,7 @@ typedef RandomFunction = String Function(int);
 
 class IDFormatter extends BaseFormatter {
   final IDGenerator generator;
-  RegExp get _regex => RegExp(r'(\d*)(?:{((?:(?![({]).)*?)}|\(((?:(?![({]).)*?)\))');
+  final _regex = RegExp(r'(\d*)(?:{((?:(?![({]).)*?)}|\(((?:(?![({]).)*?)\))');
   Map<String, RandomFunction> commands = {};
 
   IDFormatter(this.generator) {
