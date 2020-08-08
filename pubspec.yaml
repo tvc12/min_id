@@ -1,8 +1,7 @@
 name: mini_id
 description: >-
   ID generator for dart easily like eat 🥮🥮🥮🥮.
-version: 0.1.0
-author: Vi Chi Thien <meomeocf98@gmail.com>
+version: 1.0.0
 homepage: https://github.com/tvc12/min_id
 repository: https://github.com/tvc12/min_id
 documentation: https://github.com/tvc12/min_id
