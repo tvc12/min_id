@@ -9,7 +9,7 @@ documentation: https://github.com/tvc12/min_id
 issue_tracker: https://github.com/tvc12/min_id/issues
 
 environment:
-  sdk: '>=1.19.0 <3.0.0'
+  sdk: '>=2.2.0 <3.0.0'
 
 dev_dependencies:
   test: 1.15.3

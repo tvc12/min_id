@@ -36,5 +36,5 @@ abstract class IDGenerator {
    * 
    * **@return** [String] any thing as character 🤚
    */
-  String generateIn(List<String> data, int character);
+  String generateIn(String data, int character);
 }

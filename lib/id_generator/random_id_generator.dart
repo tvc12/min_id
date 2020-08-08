@@ -1,14 +1,24 @@
 part of min_id;
 
 class RandomIDGenerator extends IDGenerator {
-  final random = Random.secure();
+  final Random random = Random.secure();
 
   static const spaces = [0x0000, 0x000a, 0x001a, 0x001a];
   static const maximuns = [0x0030, 0x0041, 0x0061, 0x007f];
 
   @override
   String generate(int character) {
-    final raws = List.generate(character, (index) => 0x0021 + random.nextInt(0x005e));
+    final raws = List.generate(character, (index) {
+      final char = 0x0021 + random.nextInt(0x005a);
+      if (char >= 0x0028 && char < 0x0079) {
+        return char + 0x0002;
+      } else if (char >= 0x0079 && char < 0x007a) {
+        return char + 0x0003;
+      } else if (char >= 0x007a) {
+        return char + 0x0004;
+      } else
+        return char;
+    });
     return String.fromCharCodes(raws);
   }
 
@@ -44,9 +54,9 @@ class RandomIDGenerator extends IDGenerator {
   }
 
   @override
-  String generateIn(List<String> data, int character) {
+  String generateIn(String data, int character) {
     if (data?.isNotEmpty == true) {
-      final raws = List.generate(character, (index) {
+      final raws = List.generate(character, (_) {
         final index = random.nextInt(data.length);
         return data[index];
       });

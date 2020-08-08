@@ -1,51 +1,75 @@
-import 'dart:convert';
-
 import 'package:mini_id/min_id.dart';
 import 'package:test/test.dart';
 
-List<int> toUTF8Raw(String str) {
-  final raws = str.split('').toSet().toList().join('');
-  return utf8.encode(raws)..sort((a, b) => a.compareTo(b));
-}
-
 void main() {
-  group('ID Generator test', () {
-    const character = 10000;
-    final IDGenerator generator = RandomIDGenerator();
-    test('Generate test success', () {
-      final id = generator.generate(character);
-      final raws = toUTF8Raw(id);
-      expect(raws.length, 94);
-      expect(raws.first, 33);
-      expect(raws.last, 126);
+  group('MinID test', () {
+    test('Random basic ["5{.}-5{.}-5{.}"]x 10000', () {
+      const length = 10000;
+      final data = List.generate(length, (index) {
+        final id = MinId.getId('5{.}-5{.}-5{.}');
+        print(id);
+        expect(id.length, 17);
+        return id;
+      }).toSet();
+      expect(data.length, length);
     });
-    test('Generate only string test success', () {
-      final id = generator.generateString(character);
-      final raws = toUTF8Raw(id);
-      expect(raws.length, 52);
-      expect(raws.first, 65);
-      expect(raws.last, 122);
+    test('Random basic ["5{d}-5{d}-5{d}"] x10000', () {
+      const length = 10000;
+      final data = List.generate(length, (index) {
+        final id = MinId.getId('5{d}-5{d}-5{d}');
+        print(id);
+        expect(id.length, 17);
+        return id;
+      }).toSet();
+      expect(data.length, length);
     });
-    test('Generate only number test success', () {
-      final id = generator.generateNumber(character);
-      final raws = toUTF8Raw(id);
-      expect(raws.length, 10);
-      expect(raws.first, 48);
-      expect(raws.last, 57);
+    test('Random basic ["5{w}-5{w}-5{w}"] x10000', () {
+      const length = 10000;
+      final data = List.generate(length, (index) {
+        final id = MinId.getId('5{w}-5{w}-5{w}');
+        print(id);
+        expect(id.length, 17);
+        return id;
+      }).toSet();
+      expect(data.length, length);
     });
-    test('Generate only number test success', () {
-      final id = generator.generateSpecialCharacter(character);
-      final raws = toUTF8Raw(id);
-      expect(raws.length, 32);
-      expect(raws.first, 33);
-      expect(raws.last, 126);
+    test('Random default x10000', () {
+      const length = 10000;
+      final data = List.generate(length, (index) {
+        final id = MinId.getId();
+        print(id);
+        expect(id.length, 15);
+        return id;
+      }).toSet();
+      expect(data.length, length);
     });
-    test('Generate only number test success', () {
-      final id = generator.generateIn(['123abc'], character);
-      final raws = toUTF8Raw(id);
-      expect(raws.length, 6);
-      expect(raws.first, 49);
-      expect(raws.last, 99);
+
+    test('Random ["{5{abc}}"]', () {
+      final id = MinId.getId("{5{abc}}");
+      print(id);
+      expect(id, 'abcabcabcabcabc');
+    });
+    test('Random ["{5(abc)}"]', () {
+      final id = MinId.getId("{5(abc)}");
+      print(id);
+      expect(id.length, 5);
+    });
+    test('Random ["{5({d}45{abc}12)}"] x1000', () {
+      const length = 10000;
+      List.generate(length, (index) {
+        final id = MinId.getId("{5({d}45{abc}12)}");
+        print(id);
+        expect(id.length, 5);
+      });
+    });
+
+    test('Random ["VN_HCM-2{3(1234bcd)_2{d}_2{w}}-3{d}-4{w}"] x10000', () {
+      const length = 10000;
+      List.generate(length, (index) {
+        final id = MinId.getId("VN_HCM-2{3(1234bcd)_2{d}_2{w}}-3{d}-4{w}");
+        print(id);
+        expect(id.length, 34);
+      });
     });
   });
 }
