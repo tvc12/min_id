@@ -59,7 +59,8 @@ class IDFormatter extends BaseFormatter {
             final chars = func(numCharacter);
             return chars;
           } else {
-            return List.generate(numCharacter, (index) => rawFormat.formater).join('');
+            return List.generate(numCharacter, (index) => rawFormat.formater)
+                .join('');
           }
           break;
         // (abc)

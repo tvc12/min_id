@@ -25,7 +25,8 @@ class RandomIDGenerator extends IDGenerator {
 
   @override
   String generateNumber(int character) {
-    final raws = List.generate(character, (index) => 0x0030 + random.nextInt(0x000a));
+    final raws =
+        List.generate(character, (index) => 0x0030 + random.nextInt(0x000a));
     return String.fromCharCodes(raws);
   }
 

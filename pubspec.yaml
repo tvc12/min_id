@@ -2,7 +2,7 @@ name: min_id
 description: >-
   ID generator for dart easily like eat 🥮🥮🥮🥮.
   You can generate unique string, unique number, unique any thing by min_id 👍.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/tvc12/min_id
 repository: https://github.com/tvc12/min_id
 documentation: https://github.com/tvc12/min_id
