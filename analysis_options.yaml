@@ -32,6 +32,8 @@ linter:
     - non_constant_identifier_names
     - null_closures
     - only_throw_errors
+    - slash_for_doc_comments
+
 analyzer:
   errors:
     avoid_as: error

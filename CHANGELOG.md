@@ -2,6 +2,7 @@
 
 + Rename project to min_id
 + Update README
++ Inscrease scores
 
 ### Version 1.0.0 (08/08/2020)
 
