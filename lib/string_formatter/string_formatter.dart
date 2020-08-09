@@ -36,7 +36,7 @@ class IDFormatter extends BaseFormatter {
 
   @override
   String generate(String format) {
-    RawId rawID = _format(format);
+    var rawID = _format(format);
     while (rawID.canFormat) {
       rawID = _format(rawID.format);
     }
@@ -44,9 +44,9 @@ class IDFormatter extends BaseFormatter {
   }
 
   RawId _format(String format) {
-    bool canFormat = false;
+    var canFormat = false;
 
-    final newFormat = format.replaceAllMapped(this._regex, (matcher) {
+    final newFormat = format.replaceAllMapped(_regex, (matcher) {
       canFormat = true;
       final numCharacter = _getNumberCharaterWillGenerate(matcher.group(1));
       final rawFormat = _getFormater(matcher);
@@ -55,11 +55,12 @@ class IDFormatter extends BaseFormatter {
         // {.}, {d}
         case GenerateMode.AllCharacter:
           if (_isCommand(rawFormat.formater)) {
-            final func = this.commands[rawFormat.formater];
+            final func = commands[rawFormat.formater];
             final chars = func(numCharacter);
             return chars;
-          } else
+          } else {
             return List.generate(numCharacter, (index) => rawFormat.formater).join('');
+          }
           break;
         // (abc)
         case GenerateMode.OneCharacter:
@@ -90,7 +91,7 @@ class IDFormatter extends BaseFormatter {
   }
 
   bool _isCommand(String formater) {
-    return this.commands.containsKey(formater);
+    return commands.containsKey(formater);
   }
 }
 

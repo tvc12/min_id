@@ -45,19 +45,19 @@ void main() {
     });
 
     test('Random ["{5{abc}}"]', () {
-      final id = MinId.getId("{5{abc}}");
+      final id = MinId.getId('{5{abc}}');
       print(id);
       expect(id, 'abcabcabcabcabc');
     });
     test('Random ["{5(abc)}"]', () {
-      final id = MinId.getId("{5(abc)}");
+      final id = MinId.getId('{5(abc)}');
       print(id);
       expect(id.length, 5);
     });
     test('Random ["{5({d}45{abc}12)}"] x1000', () {
       const length = 10000;
       List.generate(length, (index) {
-        final id = MinId.getId("{5({d}45{abc}12)}");
+        final id = MinId.getId('{5({d}45{abc}12)}');
         print(id);
         expect(id.length, 5);
       });
@@ -66,7 +66,7 @@ void main() {
     test('Random ["VN_HCM-2{3(1234bcd)_2{d}_2{w}}-3{d}-4{w}"] x10000', () {
       const length = 10000;
       List.generate(length, (index) {
-        final id = MinId.getId("VN_HCM-2{3(1234bcd)_2{d}_2{w}}-3{d}-4{w}");
+        final id = MinId.getId('VN_HCM-2{3(1234bcd)_2{d}_2{w}}-3{d}-4{w}');
         print(id);
         expect(id.length, 34);
       });

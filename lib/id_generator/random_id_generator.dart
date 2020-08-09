@@ -16,8 +16,9 @@ class RandomIDGenerator extends IDGenerator {
         return char + 0x0003;
       } else if (char >= 0x007a) {
         return char + 0x0004;
-      } else
+      } else {
         return char;
+      }
     });
     return String.fromCharCodes(raws);
   }
@@ -31,9 +32,9 @@ class RandomIDGenerator extends IDGenerator {
   @override
   String generateSpecialCharacter(int character) {
     final raws = List.generate(character, (index) {
-      int raw = 0x0021 + random.nextInt(0x0020);
+      var raw = 0x0021 + random.nextInt(0x0020);
 
-      for (int i = 0; i < maximuns.length; ++i) {
+      for (var i = 0; i < maximuns.length; ++i) {
         raw += spaces[i];
         if (raw < maximuns[i]) {
           break;
