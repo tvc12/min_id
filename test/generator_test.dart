@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:mini_id/min_id.dart';
+import 'package:min_id/min_id.dart';
 import 'package:test/test.dart';
 
 List<int> toUTF8Raw(String str) {

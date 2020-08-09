@@ -1,4 +1,4 @@
-import 'package:mini_id/min_id.dart';
+import 'package:min_id/min_id.dart';
 
 void main() {
   final id = MinId.getId();
