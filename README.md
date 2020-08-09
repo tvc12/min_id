@@ -6,6 +6,16 @@ Id generator for dart
 
 ### Getting Start ✈
 
+```bash
+dependencies:
+  min_id: ^1.0.1
+```
+Install it
+
+```
+flutter pub get
+```
+
 + `default` format 🏮
 
 ```js
