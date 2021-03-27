@@ -16,9 +16,10 @@ abstract class BaseFormatter {
   ///
   ///
   /// return **id** as a [String]
-  String generate(String format);
+  String generate(String pattern);
 }
-
+/// Function random
+/// return new string
 typedef RandomFunction = String Function(int);
 
 class IDFormatter extends BaseFormatter {
@@ -35,51 +36,51 @@ class IDFormatter extends BaseFormatter {
   }
 
   @override
-  String generate(String format) {
-    var rawID = _format(format);
+  String generate(String pattern) {
+    var rawID = _toRawId(pattern);
     while (rawID.canFormat) {
-      rawID = _format(rawID.format);
+      rawID = _toRawId(rawID.format);
     }
     return rawID.toString();
   }
 
-  RawId _format(String format) {
+  RawId _toRawId(String pattern) {
     var canFormat = false;
 
-    final newFormat = format.replaceAllMapped(_regex, (matcher) {
+    final newFormat = pattern.replaceAllMapped(_regex, (matcher) {
       canFormat = true;
-      final numCharacter = _getNumberCharaterWillGenerate(matcher.group(1));
-      final rawFormat = _getFormater(matcher);
+      final numCharacter = _getNumberCharacterWillGenerate(matcher.group(1)!);
+      final rawFormat = _getFormatter(matcher);
 
       switch (rawFormat.mode) {
         // {.}, {d}
         case GenerateMode.AllCharacter:
-          if (_isCommand(rawFormat.formater)) {
-            final func = commands[rawFormat.formater];
-            final chars = func(numCharacter);
+          if (_isCommand(rawFormat.formatter)) {
+            final func = commands[rawFormat.formatter];
+            final chars = func!.call(numCharacter);
             return chars;
           } else {
-            return List.generate(numCharacter, (index) => rawFormat.formater)
+            return List.generate(numCharacter, (index) => rawFormat.formatter)
                 .join('');
           }
           break;
         // (abc)
         case GenerateMode.OneCharacter:
-          return generator.generateIn(rawFormat.formater, numCharacter);
+          return generator.generateIn(rawFormat.formatter, numCharacter);
           break;
         default:
           // throw exception if not support
-          return rawFormat.formater;
+          return rawFormat.formatter;
       }
     });
     return RawId(newFormat, canFormat);
   }
 
-  int _getNumberCharaterWillGenerate(String number) {
+  int _getNumberCharacterWillGenerate(String number) {
     return int.tryParse(number) ?? 1;
   }
 
-  RawFormat _getFormater(Match matcher) {
+  RawFormat _getFormatter(Match matcher) {
     final allChar = matcher.group(2);
     if (allChar != null && allChar.isNotEmpty) {
       return RawFormat(GenerateMode.AllCharacter, allChar);
@@ -91,8 +92,8 @@ class IDFormatter extends BaseFormatter {
     return RawFormat(GenerateMode.NotSupport, '');
   }
 
-  bool _isCommand(String formater) {
-    return commands.containsKey(formater);
+  bool _isCommand(String formatter) {
+    return commands.containsKey(formatter);
   }
 }
 
@@ -110,10 +111,10 @@ enum GenerateMode { OneCharacter, AllCharacter, NotSupport }
 
 class RawFormat {
   final GenerateMode mode;
-  final String formater;
+  final String formatter;
 
-  RawFormat(this.mode, this.formater);
+  RawFormat(this.mode, this.formatter);
 
   @override
-  String toString() => 'mode:: $mode - formatter:: $formater';
+  String toString() => 'mode:: $mode - formatter:: $formatter';
 }
