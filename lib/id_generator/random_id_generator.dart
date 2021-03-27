@@ -57,7 +57,7 @@ class RandomIDGenerator extends IDGenerator {
 
   @override
   String generateIn(String data, int character) {
-    if (data?.isNotEmpty == true) {
+    if (data.isNotEmpty == true) {
       final raws = List.generate(character, (_) {
         final index = random.nextInt(data.length);
         return data[index];

@@ -8,7 +8,7 @@ Id generator for dart
 
 ```bash
 dependencies:
-  min_id: ^1.0.3
+  min_id: ^1.1.0
 ```
 Install it
 
